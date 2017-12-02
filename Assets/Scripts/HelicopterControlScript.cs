@@ -46,23 +46,28 @@ public class HelicopterControlScript : MonoBehaviour {
         rb.AddRelativeTorque(new Vector3(
             controls.Pitch * inputPitch
                 - localAngularVelocity.x * pitchDrag
-                - Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180) * pitchRecovery,
+                - SignedSqrt( Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180)) * pitchRecovery,
             controls.Yaw * inputYaw
                 - localAngularVelocity.y * yawDrag,
             controls.Roll * inputRoll
                 - localAngularVelocity.z * rollDrag
-                - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
+                - SignedSqrt( Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180)) * rollRecovery
             ), ForceMode.Force);
 
         rb.AddRelativeForce(
             new Vector3(
-                - localVelocity.x * sidewaysDrag,
-                currentThrust - localVelocity.y * upwardDrag,
-                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - localVelocity.z * forwardDrag
+                -SignedSqrt(localVelocity.x) * sidewaysDrag,
+                currentThrust - SignedSqrt(localVelocity.y) * upwardDrag,
+                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - SignedSqrt(localVelocity.z) * forwardDrag
                 ),
             ForceMode.Force);
 
 
         //rb.AddForce(-Vector3.up * gravityForce * Time.deltaTime, ForceMode.Impulse);
+    }
+
+    private float SignedSqrt(float t)
+    {
+        return Mathf.Sign(t) * Mathf.Sqrt(Mathf.Abs(t));
     }
 }

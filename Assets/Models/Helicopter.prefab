@@ -440,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285691247128162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 103.29, y: 25, z: 94.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4280300041087158}
@@ -904,17 +904,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseThrust: 10000
   inputThrust: 5000
-  inputPitch: 1250
-  inputRoll: 2500
+  inputPitch: 3000
+  inputRoll: 3000
   inputYaw: 4000
-  forwardDrag: 100
-  upwardDrag: 200
-  sidewaysDrag: 200
-  pitchDrag: 750
-  rollDrag: 2000
+  forwardDrag: 1000
+  upwardDrag: 1000
+  sidewaysDrag: 1000
+  pitchDrag: 1250
+  rollDrag: 2500
   yawDrag: 4000
-  pitchRecovery: 500
-  rollRecovery: 500
+  pitchRecovery: 800
+  rollRecovery: 800
   forwardSpeedBoostFraction: 5
 --- !u!114 &114459338487923720
 MonoBehaviour:
@@ -1040,7 +1040,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000015258789, y: -1.1554146, z: 0.00005340576}
+  m_ConnectedAnchor: {x: -0.000015258789, y: -1.1554155, z: 0.00005340576}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -1228,7 +1228,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000071885064, y: -0.36252162, z: 0.00018256484}
+  m_ConnectedAnchor: {x: 0.000071899965, y: -0.36252353, z: 0.00018257857}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
