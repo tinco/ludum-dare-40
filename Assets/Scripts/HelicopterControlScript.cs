@@ -10,7 +10,6 @@ public class HelicopterControlScript : MonoBehaviour {
     public float inputPitch = 40F;
     public float inputRoll = 50F;
     public float inputYaw = 30F;
-    private float gravityForce = 2000;
 
     public float forwardDrag = 40;
     public float upwardDrag = 50;
@@ -19,12 +18,11 @@ public class HelicopterControlScript : MonoBehaviour {
     public float pitchDrag = 40F;
     public float rollDrag = 50F;
     public float yawDrag = 35F;
-    //private float pitchDrag = 140F;
-    //private float rollDrag = 180F;
-    //private float yawDrag = 100F;
 
     public float pitchRecovery = 8F;
     public float rollRecovery = 40F;
+
+    public float forwardSpeedBoostFraction = 3F;
 
     private Rigidbody rb;
 	private HelicopterControls controls;
@@ -57,7 +55,7 @@ public class HelicopterControlScript : MonoBehaviour {
 
         rb.AddRelativeForce(
             new Vector3(
-                -localVelocity.x * forwardDrag,
+                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - localVelocity.x * forwardDrag,
                 currentThrust - localVelocity.y * upwardDrag,
                 -localVelocity.z * sidewaysDrag
                 ) ,
