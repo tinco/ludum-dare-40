@@ -16,9 +16,12 @@ public class HelicopterControlScript : MonoBehaviour {
     private float upwardDrag = 50;
     private float sidewaysDrag = 40;
 
-    private float pitchDrag = 140F;
-    private float rollDrag = 180F;
-    private float yawDrag = 100F;
+    private float pitchDrag = 5F;
+    private float rollDrag = 6F;
+    private float yawDrag = 3F;
+    //private float pitchDrag = 140F;
+    //private float rollDrag = 180F;
+    //private float yawDrag = 100F;
 
     private float pitchRecovery = 35F;
     private float rollRecovery = 25F;
@@ -50,7 +53,7 @@ public class HelicopterControlScript : MonoBehaviour {
             controls.Roll * inputRoll
                 - localAngularVelocity.z * rollDrag
                 - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
-            ) * Time.deltaTime);
+            ) * Time.deltaTime , ForceMode.Impulse);
 
         rb.AddRelativeForce(
             new Vector3(
