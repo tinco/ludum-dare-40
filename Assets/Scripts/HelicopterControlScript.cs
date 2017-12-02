@@ -9,14 +9,17 @@ public class HelicopterControlScript : MonoBehaviour {
     private float inputThrust = 40000;
     private float gravityForce = 1000;
     private Rigidbody rb;
+	private HelicopterControls controls;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+		controls = GetComponent<HelicopterControls> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        float currentThrust = baseThrust + Input.GetAxis("Vertical") * inputThrust;
+		float currentThrust = baseThrust + controls.Vertical * inputThrust;
         rb.AddRelativeForce((
                 Vector3.up * currentThrust 
                 //- Vector3.up * rb.velocity.y * 0.01f
