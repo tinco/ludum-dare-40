@@ -46,12 +46,12 @@ public class HelicopterControlScript : MonoBehaviour {
         rb.AddRelativeTorque(new Vector3(
             controls.Pitch * inputPitch
                 - localAngularVelocity.x * pitchDrag
-                - SignedSqrt( Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180)) * pitchRecovery,
+                - Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180) * pitchRecovery,
             controls.Yaw * inputYaw
                 - localAngularVelocity.y * yawDrag,
             controls.Roll * inputRoll
                 - localAngularVelocity.z * rollDrag
-                - SignedSqrt( Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180)) * rollRecovery
+                - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
             ), ForceMode.Force);
 
         rb.AddRelativeForce(
