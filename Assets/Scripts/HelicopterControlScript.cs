@@ -5,9 +5,24 @@ using UnityEngine;
 public class HelicopterControlScript : MonoBehaviour {
 
 
-    private float baseThrust = 50000;
-    private float inputThrust = 40000;
+    private float baseThrust = 1000;
+    private float inputThrust = 600;
+    private float inputPitch = 70F;
+    private float inputRoll = 100F;
+    private float inputYaw = 60F;
     private float gravityForce = 1000;
+
+    private float forwardDrag = 40;
+    private float upwardDrag = 50;
+    private float sidewaysDrag = 40;
+
+    private float pitchDrag = 140F;
+    private float rollDrag = 180F;
+    private float yawDrag = 100F;
+
+    private float pitchRecovery = 35F;
+    private float rollRecovery = 25F;
+
     private Rigidbody rb;
 	private HelicopterControls controls;
 
@@ -18,13 +33,32 @@ public class HelicopterControlScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		float currentThrust = baseThrust + controls.Vertical * inputThrust;
-        rb.AddRelativeForce((
-                Vector3.up * currentThrust 
-                //- Vector3.up * rb.velocity.y * 0.01f
-                ) 
-            * Time.deltaTime);
-        //rb.AddForce(-Vector3.up * gravityForce * Time.deltaTime);
+	void FixedUpdate () {
+		float currentThrust = baseThrust + controls.Thrust * inputThrust;
+
+        Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+        Vector3 localAngularVelocity = transform.InverseTransformDirection(rb.angularVelocity);
+
+
+
+        rb.AddRelativeTorque(new Vector3(
+            controls.Pitch * inputPitch
+                - localAngularVelocity.x * pitchDrag
+                - Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180) * pitchRecovery,
+            controls.Yaw * inputYaw
+                - localAngularVelocity.y * yawDrag,
+            controls.Roll * inputRoll
+                - localAngularVelocity.z * rollDrag
+                - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
+            ) * Time.deltaTime);
+
+        rb.AddRelativeForce(
+            new Vector3(
+                -localVelocity.x * forwardDrag,
+                currentThrust - localVelocity.y * upwardDrag,
+                -localVelocity.z * sidewaysDrag
+                ) * Time.deltaTime,
+            ForceMode.Impulse);
+        rb.AddForce(-Vector3.up * gravityForce * Time.deltaTime, ForceMode.Impulse);
 	}
 }
