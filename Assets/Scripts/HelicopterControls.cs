@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HelicopterControls : MonoBehaviour {
-	public float Vertical;
-	public float Horizontal;
-
+	public float Thrust;
+	public float Yaw;
+    public float Pitch;
+    public float Roll;
 	// Use this for initialization
 	void Start () {
-		Vertical = 0;
-		Horizontal = 0;
+        Thrust = 0;
+        Yaw = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vertical = Input.GetAxis ("Vertical");
-		Horizontal = Input.GetAxis ("Horizontal");
+        Thrust = Input.GetAxis ("Thrust");
+        Yaw = Input.GetAxis ("Yaw");
+        Pitch = Input.GetAxis("Pitch");
+        Roll = Input.GetAxis("Roll");
 	}
 }
