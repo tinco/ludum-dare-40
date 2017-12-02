@@ -42,5 +42,6 @@ public class HookBehaviour : MonoBehaviour {
 		joint.enableCollision = true;
 		joint.damper = JointDamper;
 		joint.spring = JointForce;
+		joint.maxDistance = 0.05f;
 	}
 }

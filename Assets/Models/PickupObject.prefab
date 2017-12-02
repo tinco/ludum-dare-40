@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4987865376177930}
   - component: {fileID: 54163676551655648}
+  - component: {fileID: 114055674885985006}
   m_Layer: 0
   m_Name: PickupObject
   m_TagString: Untagged
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713822065542714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.68, y: -27.48, z: 0.93}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4987865376177930}
@@ -65,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737292155255804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.556786, y: 37.1, z: 98.0513}
+  m_LocalPosition: {x: 103.94, y: 0.69, z: 95.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4404641914765822}
@@ -120,8 +121,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737292155255804}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 100
+  m_Drag: 0.15
   m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -140,3 +141,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114055674885985006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737292155255804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e171bdd8896154d7c928808c3ecab2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hook: {fileID: 0}
