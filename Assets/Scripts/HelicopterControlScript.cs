@@ -7,24 +7,24 @@ public class HelicopterControlScript : MonoBehaviour {
 
     private float baseThrust = 1000;
     private float inputThrust = 600;
-    private float inputPitch = 70F;
-    private float inputRoll = 100F;
-    private float inputYaw = 60F;
+    public float inputPitch = 25F;
+    public float inputRoll = 50F;
+    public float inputYaw = 30F;
     private float gravityForce = 1000;
 
-    private float forwardDrag = 40;
-    private float upwardDrag = 50;
-    private float sidewaysDrag = 40;
+    public float forwardDrag = 40;
+    public float upwardDrag = 50;
+    public float sidewaysDrag = 40;
 
-    private float pitchDrag = 5F;
-    private float rollDrag = 6F;
-    private float yawDrag = 3F;
+    public float pitchDrag = 20F;
+    public float rollDrag = 50F;
+    public float yawDrag = 35F;
     //private float pitchDrag = 140F;
     //private float rollDrag = 180F;
     //private float yawDrag = 100F;
 
-    private float pitchRecovery = 35F;
-    private float rollRecovery = 25F;
+    public float pitchRecovery = 15F;
+    public float rollRecovery = 40F;
 
     private Rigidbody rb;
 	private HelicopterControls controls;
