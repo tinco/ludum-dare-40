@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Helicopter.transform.eulerAngles.y;
         float angle = Mathf.LerpAngle(targetAngle, currentAngle, Time.deltaTime * damping);
