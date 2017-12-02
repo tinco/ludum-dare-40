@@ -32,10 +32,11 @@ public class HelicopterControlScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 		controls = GetComponent<HelicopterControls> ();
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		float currentThrust = baseThrust + controls.Thrust * inputThrust;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        float currentThrust = baseThrust + controls.Thrust * inputThrust;
 
         Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
         Vector3 localAngularVelocity = transform.InverseTransformDirection(rb.angularVelocity);
@@ -51,15 +52,17 @@ public class HelicopterControlScript : MonoBehaviour {
             controls.Roll * inputRoll
                 - localAngularVelocity.z * rollDrag
                 - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
-            ) , ForceMode.Force);
+            ), ForceMode.Force);
 
         rb.AddRelativeForce(
             new Vector3(
-                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - localVelocity.x * forwardDrag,
+                - localVelocity.x * sidewaysDrag,
                 currentThrust - localVelocity.y * upwardDrag,
-                -localVelocity.z * sidewaysDrag
-                ) ,
+                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - localVelocity.z * forwardDrag
+                ),
             ForceMode.Force);
+
+
         //rb.AddForce(-Vector3.up * gravityForce * Time.deltaTime, ForceMode.Impulse);
-	}
+    }
 }
