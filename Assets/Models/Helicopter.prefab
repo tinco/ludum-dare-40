@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 54336134863915214}
   - component: {fileID: 114249517194192322}
   - component: {fileID: 114628256375765570}
+  - component: {fileID: 114748270994627276}
   m_Layer: 0
   m_Name: Helicopter
   m_TagString: Untagged
@@ -265,6 +266,8 @@ GameObject:
   - component: {fileID: 33749023839182684}
   - component: {fileID: 23341923949515822}
   - component: {fileID: 65879297059539036}
+  - component: {fileID: 65559091661675908}
+  - component: {fileID: 114731750472412400}
   m_Layer: 0
   m_Name: Rotor
   m_TagString: Untagged
@@ -440,7 +443,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285691247128162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.29, y: 25, z: 94.7}
+  m_LocalPosition: {x: 116.405396, y: 13.3, z: 87.75838}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4280300041087158}
@@ -855,6 +858,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65559091661675908
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1923365028776738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0.2, z: -0.00000008940697}
 --- !u!65 &65753663135336830
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -947,6 +962,29 @@ MonoBehaviour:
   Yaw: 0
   Pitch: 0
   Roll: 0
+--- !u!114 &114731750472412400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1923365028776738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62567c11f0c734abfbae8fe51306fec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114748270994627276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285691247128162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44159858f1326458bbed2a64696a127b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wreck: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
 --- !u!114 &114836251023962616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1040,7 +1078,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000015258789, y: -1.1554155, z: 0.00005340576}
+  m_ConnectedAnchor: {x: -0.000015258789, y: -1.155416, z: 0.00005340576}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -1134,7 +1172,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00013209903, y: 0.54591775, z: 0.00037434185}
+  m_ConnectedAnchor: {x: -0.00013209647, y: 0.5459182, z: 0.00037434185}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
