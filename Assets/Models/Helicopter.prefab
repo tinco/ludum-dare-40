@@ -93,8 +93,6 @@ GameObject:
   - component: {fileID: 54551397462706386}
   - component: {fileID: 153592645938482586}
   - component: {fileID: 114459338487923720}
-  - component: {fileID: 114836251023962616}
-  - component: {fileID: 114885303399360380}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -1103,40 +1101,6 @@ MonoBehaviour:
   - {fileID: 4708227722859010}
   - {fileID: 4561711463679384}
   LineRenderer: {fileID: 120188675597918906}
---- !u!114 &114836251023962616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431287064193678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8dcd99875a94606a559c822b92cc1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttachedPickups:
-  - {fileID: 0}
-  BreakForce: 100
-  BreakTorque: 100
-  JointDamper: 1
-  JointForce: 1
---- !u!114 &114885303399360380
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431287064193678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8dcd99875a94606a559c822b92cc1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttachedPickups:
-  - {fileID: 0}
-  BreakForce: 100
-  BreakTorque: 100
-  JointDamper: 1
-  JointForce: 1
 --- !u!120 &120188675597918906
 LineRenderer:
   m_ObjectHideFlags: 1
