@@ -277,6 +277,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4519174977462280}
+  - component: {fileID: 65043330796927906}
+  - component: {fileID: 136795441306900258}
   m_Layer: 0
   m_Name: HelicopterModel
   m_TagString: Untagged
@@ -475,8 +477,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285691247128162}
-  m_LocalRotation: {x: 0.020113692, y: -0.9510021, z: -0.008457055, w: -0.30841365}
-  m_LocalPosition: {x: 105.2, y: 7.84, z: 95.14}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 115, y: 14, z: 88}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4524741311813668}
@@ -944,6 +946,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65043330796927906
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862452866962228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 0.2, z: 3}
+  m_Center: {x: 0, y: -0.7, z: 0}
 --- !u!65 &65429842093812748
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1041,6 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttachedPickups:
   - {fileID: 0}
+  AttrackedPickups: []
   BreakForce: 20000
   BreakTorque: 20000
   JointDamper: 0
@@ -1136,11 +1151,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 105.25069, y: 6.6751103, z: 95.13571}
-  - {x: 105.30054, y: 5.531369, z: 95.13143}
-  - {x: 105.33459, y: 4.761595, z: 95.07946}
-  - {x: 105.33891, y: 4.0068617, z: 95.036125}
-  - {x: 105.303, y: 2.9155755, z: 94.998116}
+  - {x: 115, y: 12.834, z: 88}
+  - {x: 114.99997, y: 11.689165, z: 88.0001}
+  - {x: 115.028366, y: 10.918451, z: 88.04021}
+  - {x: 115.07524, y: 10.16409, z: 88.05633}
+  - {x: 115.16266, y: 9.075264, z: 88.03495}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1
@@ -1204,6 +1219,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136795441306900258
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862452866962228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.9
+  m_Height: 7
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.1, z: -1}
 --- !u!153 &153351169573573326
 ConfigurableJoint:
   m_ObjectHideFlags: 1
@@ -1214,7 +1242,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000013388693, y: -1.1554174, z: 0.000051068142}
+  m_ConnectedAnchor: {x: -0.000015258789, y: -1.1554174, z: 0.000049591064}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -1308,7 +1336,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00012705475, y: 0.5462689, z: 0.0004233066}
+  m_ConnectedAnchor: {x: -0.00012452155, y: 0.54626936, z: 0.00042395107}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -1402,7 +1430,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00054592267, y: -0.3779917, z: 0.0012583882}
+  m_ConnectedAnchor: {x: -0.00054549426, y: -0.3779918, z: 0.0012601465}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -1496,7 +1524,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00055447593, y: -0.38613835, z: 0.0003959108}
+  m_ConnectedAnchor: {x: -0.0005543204, y: -0.38613865, z: 0.000396993}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1

@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FinishBehaviour : MonoBehaviour {
-	void OnTriggerEnter()
+
+    public int requiredPickups = 1;
+
+	void OnTriggerEnter(Collision other)
 	{
-		FindObjectOfType<GameController> ().BroadcastMessage("OnFinish");
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            FindObjectOfType<GameController>().BroadcastMessage("OnFinish");
+        }
+
 	}
 }
