@@ -35,13 +35,7 @@ public class HookBehaviour : MonoBehaviour {
 	}
 
 	void CreatePickupJoint(GameObject pickup, ContactPoint contact) {
-		var joint = pickup.AddComponent<SpringJoint> ();
-		joint.connectedBody = gameObject.GetComponent<Rigidbody> ();
-		joint.breakForce = BreakForce;
-		joint.breakTorque = BreakTorque;
-		joint.enableCollision = true;
-		joint.damper = JointDamper;
-		joint.spring = JointForce;
-		joint.maxDistance = 0.05f;
+		var joint = pickup.AddComponent<MagnetJoint> ();
+		joint.ConnectedBody = gameObject.GetComponent<Rigidbody> ();
 	}
 }

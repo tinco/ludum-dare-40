@@ -18,7 +18,7 @@ public class CameraScript : MonoBehaviour {
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Helicopter.transform.eulerAngles.y;
         float angle = Mathf.LerpAngle(targetAngle, currentAngle, Time.deltaTime * damping);
-        Debug.Log(currentAngle + "   " + targetAngle + "  " +angle + "  |  " + (targetAngle - angle) + "  " + Time.deltaTime * damping);
+        //Debug.Log(currentAngle + "   " + targetAngle + "  " +angle + "  |  " + (targetAngle - angle) + "  " + Time.deltaTime * damping);
         Quaternion rotate = Quaternion.Euler(0, angle, 0);
         transform.position = Helicopter.transform.position + (rotate * relativeTargetPosition);
 
