@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RotorCollisions : MonoBehaviour {
-	void OnTriggerEnter()
+	void OnTriggerEnter(Collider other)
 	{
-		gameObject.SendMessageUpwards ("OnRotorCollision");
+        if (!other.isTrigger){
+            gameObject.SendMessageUpwards("OnRotorCollision");
+        }
 	}
 }
