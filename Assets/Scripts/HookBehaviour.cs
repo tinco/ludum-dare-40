@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HookBehaviour : MonoBehaviour {
 	public List<Pickupable> AttachedPickups;
+	public List<Pickupable> AttrackedPickups;
 
 	public float BreakForce = 100;
 	public float BreakTorque = 100;
@@ -18,7 +19,19 @@ public class HookBehaviour : MonoBehaviour {
 			var pickupable = otherBody ? otherBody.gameObject.GetComponent<Pickupable> () : null;
 			if (pickupable != null && !AttachedPickups.Contains(pickupable)) {
 				Attach (pickupable, contact);
+				BreakMagnet (pickupable);
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider collider) {
+		var pickupable = collider.gameObject.GetComponent<Pickupable>();
+		if (pickupable != null && !AttrackedPickups.Contains(pickupable)) {
+			var pickup = collider.gameObject;
+			var magnet = pickup.AddComponent<MagnetJoint> ();
+			magnet.ConnectedBody = gameObject.GetComponent<Rigidbody> ();
+			AttrackedPickups.Add(pickupable);
+			pickupable.Attract (magnet);
 		}
 	}
 
@@ -32,6 +45,11 @@ public class HookBehaviour : MonoBehaviour {
 	public void Detach(Pickupable pickup) {
 		Debug.Log ("Pickup detached!");
 		AttachedPickups.Remove (pickup);
+	}
+
+	void BreakMagnet(Pickupable pickup) {
+		AttrackedPickups.Remove (pickup);
+		pickup.BreakMagnet ();
 	}
 
 	void CreatePickupJoint(GameObject pickup, ContactPoint contact) {

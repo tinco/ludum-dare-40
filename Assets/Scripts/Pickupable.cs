@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickupable : MonoBehaviour {
 	// This is set when this pickup is hooked by a player
 	public HookBehaviour hook;
+	public MagnetJoint magnet;
 
 	// Use this for initialization
 	void Start () {
@@ -21,9 +22,17 @@ public class Pickupable : MonoBehaviour {
 		this.hook = hook;
 	}
 
+	public void Attract(MagnetJoint magnet) {
+		this.magnet = magnet;
+	}
+
 	// This class is responsible for telling the hooking player that the joint broke.
 	void OnJointBreak(float breakForce)
 	{
 		this.hook.Detach (this);
+	}
+
+	public void BreakMagnet() {
+		magnet.BreakJoint ();
 	}
 }
