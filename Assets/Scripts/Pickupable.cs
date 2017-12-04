@@ -12,13 +12,14 @@ public class Pickupable : MonoBehaviour {
     private Vector3 startposition;
     private Quaternion startrotation;
     private Rigidbody rb;
+    public ParticleSystem particle;
 
 	// Use this for initialization
 	void Start () {
         startposition = transform.position;
         startrotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
-
+        particle = GetComponentInChildren<ParticleSystem>();
     }
 
     public void Reset()
@@ -28,6 +29,8 @@ public class Pickupable : MonoBehaviour {
         transform.rotation = startrotation;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        var emission = particle.emission;
+        emission.enabled = true;
 
     }
 
@@ -48,6 +51,8 @@ public class Pickupable : MonoBehaviour {
     public void Attach(HookBehaviour hook) {
 		this.hook = hook;
         Debug.Log("Attach");
+        var emission = particle.emission;
+        emission.enabled = false;
     }
 
 	public void Attract(MagnetJoint magnet) {

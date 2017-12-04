@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelMenuScript : MonoBehaviour {
 
     public GameObject PauseMenu;
     //public GameObject DeathMenu;
     public GameObject LevelCompleteMenu;
+    public Text TimeCardText;
 
     public void Start()
     {
@@ -50,5 +52,6 @@ public class LevelMenuScript : MonoBehaviour {
     {
         SceneManager.LoadScene(sceneName);
     }
+
 
 }
