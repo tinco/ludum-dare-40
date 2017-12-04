@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Level1Controller : GameController {
 
-	void OnFinish() {
-		Debug.Log ("Finish!");
-	}
+
 }
