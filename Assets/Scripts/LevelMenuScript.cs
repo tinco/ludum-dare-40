@@ -46,4 +46,9 @@ public class LevelMenuScript : MonoBehaviour {
         Application.Quit();
     }
 
+    public void LevelPressed(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
