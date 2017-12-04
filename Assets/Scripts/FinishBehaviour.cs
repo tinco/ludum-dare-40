@@ -9,6 +9,7 @@ public class FinishBehaviour : MonoBehaviour {
     //public float JointDamper = 1;
     //public float JointForce = 1;
     public PickupFlash flash;
+	public AudioSource pickupSound;
 
     void OnTriggerEnter(Collider other)
 	{
@@ -18,6 +19,7 @@ public class FinishBehaviour : MonoBehaviour {
             pickupable.ForceDetach();
             Debug.Log("Finish");
             flash.ActivateFlash();
+			pickupSound.Play ();
             pickupable.gameObject.SetActive(false);
             FindObjectOfType<GameController>().BroadcastMessage("OnPickupCollected");
         }

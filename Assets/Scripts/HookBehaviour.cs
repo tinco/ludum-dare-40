@@ -43,6 +43,8 @@ public class HookBehaviour : MonoBehaviour {
 		CreatePickupJoint (pickup.gameObject, contact);
 		pickup.Attach (this);
         flash.ActivateFlash();
+		var sound = transform.Find ("pickup").GetComponent<AudioSource> ();
+		sound.Play();
 	}
 
 	// This method is called by the pickup when the joint breaks.

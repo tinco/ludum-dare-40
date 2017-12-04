@@ -108,7 +108,9 @@ public class HelicopterControlScript : MonoBehaviour {
             wreckInstance = Instantiate(Wreck, transform.position, transform.rotation);
             wreckTime = 2;
             SetWrecked(true);
-            FindObjectOfType<GameController>().BroadcastMessage("OnDeath");
+			var explosionSound = transform.Find ("explosion").GetComponent<AudioSource> ();
+			explosionSound.Play();
+			FindObjectOfType<GameController>().BroadcastMessage("OnDeath");
         }
     }
 
