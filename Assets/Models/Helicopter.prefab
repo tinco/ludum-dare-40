@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 4306083063637818}
   - component: {fileID: 33741109405227836}
   - component: {fileID: 23578621300391516}
+  - component: {fileID: 114484905083456872}
   m_Layer: 0
   m_Name: tailblade
   m_TagString: Untagged
@@ -295,6 +296,7 @@ GameObject:
   - component: {fileID: 4303318845362162}
   - component: {fileID: 33533237079555484}
   - component: {fileID: 23022236122777320}
+  - component: {fileID: 114632946667123858}
   m_Layer: 0
   m_Name: mainblade
   m_TagString: Untagged
@@ -416,7 +418,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312862624317404}
-  m_LocalRotation: {x: -0.50000006, y: 0.49999997, z: 0.49999997, w: 0.50000006}
+  m_LocalRotation: {x: -0.49978518, y: 0.4997851, z: 0.4997851, w: 0.5006441}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
@@ -1313,6 +1315,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightFlash: {fileID: 108447967151644356}
   particleFlash: {fileID: 198490075174759146}
+--- !u!114 &114484905083456872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312862624317404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f24427581b646eda4814780392a040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 30
+  Orientation: 1
 --- !u!114 &114628256375765570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1328,6 +1343,19 @@ MonoBehaviour:
   Yaw: 0
   Pitch: 0
   Roll: 0
+--- !u!114 &114632946667123858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738266974928324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f24427581b646eda4814780392a040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 20
+  Orientation: 0
 --- !u!114 &114731750472412400
 MonoBehaviour:
   m_ObjectHideFlags: 1
