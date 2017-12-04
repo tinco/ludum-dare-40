@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class LevelMenuScript : MonoBehaviour {
 
     public GameObject PauseMenu;
-    public GameObject DeathMenu;
+    //public GameObject DeathMenu;
     public GameObject LevelCompleteMenu;
 
     public void Start()
     {
         PauseMenu.SetActive(false);
-        DeathMenu.SetActive(false);
+        //DeathMenu.SetActive(false);
         LevelCompleteMenu.SetActive(false);
     }
 
@@ -22,7 +22,7 @@ public class LevelMenuScript : MonoBehaviour {
 
         FindObjectOfType<GameController>().BroadcastMessage("OnRestart");
         PauseMenu.SetActive(false);
-        DeathMenu.SetActive(false);
+        //DeathMenu.SetActive(false);
         LevelCompleteMenu.SetActive(false);
         Time.timeScale = 1;
     }
@@ -36,7 +36,7 @@ public class LevelMenuScript : MonoBehaviour {
     public void BackButtonPressed()
     {
         PauseMenu.SetActive(false);
-        DeathMenu.SetActive(false);
+        //DeathMenu.SetActive(false);
         LevelCompleteMenu.SetActive(false);
         Time.timeScale = 1;
     }
@@ -44,6 +44,11 @@ public class LevelMenuScript : MonoBehaviour {
     public void QuitButtonPressed()
     {
         Application.Quit();
+    }
+
+    public void LevelPressed(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
 }

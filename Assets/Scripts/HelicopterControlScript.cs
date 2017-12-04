@@ -24,50 +24,116 @@ public class HelicopterControlScript : MonoBehaviour {
 
     public float forwardSpeedBoostFraction = 3F;
 
+    public GameObject Wreck;
+    private GameObject wreckInstance;
+    private float wreckTime = -1;
+    private bool isWrecked = false;
+
     private Rigidbody rb;
 	private HelicopterControls controls;
 
-	// Use this for initialization
-	void Start () {
+
+    private RotorCollisions[] rotors;
+    private bool isImmortal = false;
+
+    public GameObject HookAssembly;
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
 		controls = GetComponent<HelicopterControls> ();
+
+        rotors = GetComponentsInChildren<RotorCollisions>();
+
 	}
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float currentThrust = baseThrust + controls.Thrust * inputThrust;
+        if (!isWrecked)
+        {
+            float currentThrust = baseThrust + controls.Thrust * inputThrust;
 
-        Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-        Vector3 localAngularVelocity = transform.InverseTransformDirection(rb.angularVelocity);
-
-
-
-        rb.AddRelativeTorque(new Vector3(
-            controls.Pitch * inputPitch
-                - localAngularVelocity.x * pitchDrag
-                - Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180) * pitchRecovery,
-            controls.Yaw * inputYaw
-                - localAngularVelocity.y * yawDrag,
-            controls.Roll * inputRoll
-                - localAngularVelocity.z * rollDrag
-                - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
-            ), ForceMode.Force);
-
-        rb.AddRelativeForce(
-            new Vector3(
-                -SignedSqrt(localVelocity.x) * sidewaysDrag,
-                currentThrust - SignedSqrt(localVelocity.y) * upwardDrag,
-                Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - SignedSqrt(localVelocity.z) * forwardDrag
-                ),
-            ForceMode.Force);
+            Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+            Vector3 localAngularVelocity = transform.InverseTransformDirection(rb.angularVelocity);
 
 
-        //rb.AddForce(-Vector3.up * gravityForce * Time.deltaTime, ForceMode.Impulse);
+
+            rb.AddRelativeTorque(new Vector3(
+                controls.Pitch * inputPitch
+                    - localAngularVelocity.x * pitchDrag
+                    - Mathf.Tan(rb.transform.localEulerAngles.x * Mathf.PI / 180) * pitchRecovery,
+                controls.Yaw * inputYaw
+                    - localAngularVelocity.y * yawDrag,
+                controls.Roll * inputRoll
+                    - localAngularVelocity.z * rollDrag
+                    - Mathf.Tan(rb.transform.localEulerAngles.z * Mathf.PI / 180) * rollRecovery
+                ), ForceMode.Force);
+
+            rb.AddRelativeForce(
+                new Vector3(
+                    -SignedSqrt(localVelocity.x) * sidewaysDrag,
+                    currentThrust - SignedSqrt(localVelocity.y) * upwardDrag,
+                    Mathf.Max(new float[] { localVelocity.magnitude - 10, 0 }) * forwardSpeedBoostFraction - SignedSqrt(localVelocity.z) * forwardDrag
+                    ),
+                ForceMode.Force);
+
+
+        }
+        else
+        {
+            if (wreckTime > 0)
+            {
+                wreckTime -= Time.deltaTime;
+            }
+            else
+            {
+                GameObject.Destroy(wreckInstance);
+                FindObjectOfType<GameController>().BroadcastMessage("OnRestart");
+
+                //SetWrecked(false);
+            }
+        }
     }
+
+    public void SetImmortal(bool immortal)
+    {
+        isImmortal = immortal;
+    }
+
+    void OnRotorCollision()
+    {
+        if (!isImmortal)
+        {
+            wreckInstance = Instantiate(Wreck, transform.position, transform.rotation);
+            wreckTime = 2;
+            SetWrecked(true);
+            FindObjectOfType<GameController>().BroadcastMessage("OnDeath");
+        }
+    }
+
+    //public void Reset(GameObject spawn)
+    //{
+    //    transform.position = spawn.transform.position;
+    //    transform.rotation = spawn.transform.rotation;
+    //    rb.velocity = Vector3.zero;
+    //    rb.angularVelocity = Vector3.zero;
+    //    SetImmortal(false);
+    //}
 
     private float SignedSqrt(float t)
     {
         return Mathf.Sign(t) * Mathf.Sqrt(Mathf.Abs(t));
     }
+
+    private void SetWrecked(bool wrecked)
+    {
+        isWrecked = wrecked;
+        foreach (var rotor in rotors)
+        {
+            rotor.gameObject.SetActive(!wrecked);
+        }
+    }
+
+
 }

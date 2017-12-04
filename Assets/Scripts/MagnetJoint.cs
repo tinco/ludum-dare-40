@@ -6,10 +6,10 @@ using UnityEngine;
 public class MagnetJoint : MonoBehaviour {
 	public Rigidbody ConnectedBody;
 
-	public float MagnetForce = 500;
+	public float MagnetForce = 1000;
 
 	// Distance until which a force is applied, after which the joint is broken
-	public float MaxDistance = 5f;
+	public float MaxDistance = 20f;
 
 	// Distance until which no force is applied
 	public float MinDistance = 1f;

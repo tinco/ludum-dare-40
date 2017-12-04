@@ -6,33 +6,67 @@ public class Pickupable : MonoBehaviour {
 	// This is set when this pickup is hooked by a player
 	public HookBehaviour hook;
 	public MagnetJoint magnet;
+    public bool collected = false;
+
+
+    private Vector3 startposition;
+    private Quaternion startrotation;
+    private Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        startposition = transform.position;
+        startrotation = transform.rotation;
+        rb = GetComponent<Rigidbody>();
 
-	// This is called when we're hooked by a player
-	public void Attach(HookBehaviour hook) {
+    }
+
+    public void Reset()
+    {
+        ForceDetach();
+        transform.position = startposition;
+        transform.rotation = startrotation;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+    }
+
+    public void ForceDetach()
+    {
+        BreakMagnet();
+        if (magnet != null) {
+            magnet.BreakJoint();
+        }
+        var joints = GetComponents<SpringJoint>();
+        foreach(var joint in joints)
+        {
+            Destroy(joint);
+        }
+    }
+
+    // This is called when we're hooked by a player
+    public void Attach(HookBehaviour hook) {
 		this.hook = hook;
-	}
+        Debug.Log("Attach");
+    }
 
 	public void Attract(MagnetJoint magnet) {
 		this.magnet = magnet;
 	}
 
 	// This class is responsible for telling the hooking player that the joint broke.
-	void OnJointBreak(float breakForce)
+	public void OnJointBreak(float breakForce)
 	{
-		this.hook.Detach (this);
+        if (hook != null)
+        {
+            this.hook.Detach(this);
+        }
 	}
 
 	public void BreakMagnet() {
-		magnet.BreakJoint ();
+        if (magnet != null)
+        {
+            magnet.BreakJoint();
+        }
 	}
 }
