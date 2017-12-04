@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HookBehaviour : MonoBehaviour {
-	public List<Pickupable> AttachedPickups;
+    public PickupFlash flash;
+
+    public List<Pickupable> AttachedPickups;
 	public List<Pickupable> AttrackedPickups;
+
 
 	public float BreakForce = 100;
 	public float BreakTorque = 100;
@@ -39,6 +42,7 @@ public class HookBehaviour : MonoBehaviour {
 		AttachedPickups.Add (pickup);
 		CreatePickupJoint (pickup.gameObject, contact);
 		pickup.Attach (this);
+        flash.ActivateFlash();
 	}
 
 	// This method is called by the pickup when the joint breaks.

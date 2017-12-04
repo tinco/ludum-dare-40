@@ -8,6 +8,7 @@ public class FinishBehaviour : MonoBehaviour {
     //public float BreakTorque = 100;
     //public float JointDamper = 1;
     //public float JointForce = 1;
+    public PickupFlash flash;
 
     void OnTriggerEnter(Collider other)
 	{
@@ -15,6 +16,8 @@ public class FinishBehaviour : MonoBehaviour {
         {
             var pickupable = other.gameObject.GetComponent<Pickupable>();
             pickupable.ForceDetach();
+            Debug.Log("Finish");
+            flash.ActivateFlash();
             pickupable.gameObject.SetActive(false);
             FindObjectOfType<GameController>().BroadcastMessage("OnPickupCollected");
         }

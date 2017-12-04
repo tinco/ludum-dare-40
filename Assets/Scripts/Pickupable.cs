@@ -8,6 +8,7 @@ public class Pickupable : MonoBehaviour {
 	public MagnetJoint magnet;
     public bool collected = false;
 
+
     private Vector3 startposition;
     private Quaternion startrotation;
     private Rigidbody rb;
@@ -17,7 +18,8 @@ public class Pickupable : MonoBehaviour {
         startposition = transform.position;
         startrotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
-	}
+
+    }
 
     public void Reset()
     {
@@ -45,7 +47,8 @@ public class Pickupable : MonoBehaviour {
     // This is called when we're hooked by a player
     public void Attach(HookBehaviour hook) {
 		this.hook = hook;
-	}
+        Debug.Log("Attach");
+    }
 
 	public void Attract(MagnetJoint magnet) {
 		this.magnet = magnet;
