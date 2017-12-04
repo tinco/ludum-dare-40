@@ -15,7 +15,10 @@ public class GameController : MonoBehaviour {
     private bool isComplete = false;
     private Pickupable[] initialpickups;
     private bool isWrecked = false;
-    
+
+    private GUIStyle guiStyle;
+    private float elapsedTime;
+    private bool isTimerActive;
 
     private void Start()
     {
@@ -28,6 +31,13 @@ public class GameController : MonoBehaviour {
         {
             requiredPickups = initialpickups.Length;
         }
+
+        guiStyle = new GUIStyle();
+        guiStyle.fontStyle = FontStyle.Bold;
+        guiStyle.fontSize = 24;
+        guiStyle.normal.textColor = Color.black;
+        elapsedTime = 0;
+        isTimerActive = true;
     }
 
     void OnDeath() {
@@ -37,13 +47,17 @@ public class GameController : MonoBehaviour {
         {
             pickup.ForceDetach();
         }
-
+        isTimerActive = false;
         var camera = GameObject.FindGameObjectWithTag("MainCamera");
         camera.GetComponent<CameraScript>().SetMobile(false);
     }
 
     void OnFinish()
     {
+
+        isTimerActive = false;
+        menuScript.TimeCardText.text = string.Format("Your time: {0}",GetFormattedTime());
+
         helicopterInstance.SetImmortal(true);
         isComplete = true;
         completeTime = 1;
@@ -87,11 +101,13 @@ public class GameController : MonoBehaviour {
             pickup.Reset();
         }
         Time.timeScale = 1;
+        elapsedTime = 0;
+        isTimerActive = true;
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if(Input.GetAxis("Cancel") > 0.5)
+        if (Input.GetButtonDown("Cancel"))
         {
             if (!menuScript.PauseMenu.activeSelf)
             {
@@ -104,6 +120,10 @@ public class GameController : MonoBehaviour {
                 menuScript.PauseMenu.SetActive(false);
             }
         }
+    }
+
+    public void FixedUpdate()
+    {
 
         if (isComplete)
         {
@@ -116,5 +136,30 @@ public class GameController : MonoBehaviour {
                 menuScript.LevelCompleteMenu.SetActive(true);
             }
         }
+
+        if (isTimerActive)
+        {
+            elapsedTime += Time.deltaTime;
+        }
+    }
+
+    void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 250, 100), GetFormattedTime(), guiStyle);
+
+
+        GUI.Label(new Rect(Screen.width - 160, 10, 250, 100), 
+            string.Format("Pickups: {0} / {1}", foundPickups, requiredPickups), 
+            guiStyle);
+
+    }
+
+    private string GetFormattedTime()
+    {
+        int minutes = Mathf.FloorToInt(elapsedTime / 60F);
+        int seconds = Mathf.FloorToInt(elapsedTime - minutes * 60F);
+        int miliseconds = Mathf.FloorToInt((elapsedTime - minutes * 60F - seconds) * 60F);
+        string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, miliseconds);
+        return niceTime;
     }
 }
