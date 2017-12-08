@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5.unity
     guid: 8b43ef363d67a834c94a3f5d81ea5467
+  - enabled: 0
+    path: Assets/Scenes/SinterklaasScene.unity
+    guid: 0306335062e3ce34880e603095cf4f1c

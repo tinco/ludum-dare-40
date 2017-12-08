@@ -27,7 +27,7 @@ public class PickupFlash : MonoBehaviour {
             time += Time.deltaTime;
 
             lightFlash.intensity = 1*Mathf.Cos(time*1.5F - 0.4F);
-            Debug.Log(lightFlash.intensity);
+
             if (time > 1.5F)
             {
                 lightFlash.enabled = false;
