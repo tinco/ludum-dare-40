@@ -10,17 +10,17 @@ public class GameController : MonoBehaviour {
     public LevelMenuScript menuScript;
 
     public int requiredPickups = 0;
-    private int foundPickups = 0;
-    private float completeTime = -1;
-    private bool isComplete = false;
-    private Pickupable[] initialpickups;
-    private bool isWrecked = false;
+    internal int foundPickups = 0;
+    internal float completeTime = -1;
+    internal bool isComplete = false;
+    internal Pickupable[] initialpickups;
+    internal bool isWrecked = false;
 
-    private GUIStyle guiStyle;
-    private float elapsedTime;
-    private bool isTimerActive;
+    internal GUIStyle guiStyle;
+    internal float elapsedTime;
+    internal bool isTimerActive;
 
-    private void Start()
+    void Start()
     {
         initialpickups = (Pickupable[])FindObjectsOfType(typeof(Pickupable));
         if(initialpickups == null || initialpickups.Length == 0)
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour {
 
     }
 
-    public void OnRestart()
+    public virtual void OnRestart()
     {
         isComplete = false;
         isWrecked = false;
@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void OnGUI()
+    public virtual void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 250, 100), GetFormattedTime(), guiStyle);
 
@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour {
 
     }
 
-    private string GetFormattedTime()
+    internal string GetFormattedTime()
     {
         int minutes = Mathf.FloorToInt(elapsedTime / 60F);
         int seconds = Mathf.FloorToInt(elapsedTime - minutes * 60F);

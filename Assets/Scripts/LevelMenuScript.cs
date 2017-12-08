@@ -12,7 +12,7 @@ public class LevelMenuScript : MonoBehaviour {
     public GameObject LevelCompleteMenu;
     public Text TimeCardText;
 
-    public void Start()
+    public virtual void Start()
     {
         PauseMenu.SetActive(false);
         //DeathMenu.SetActive(false);
